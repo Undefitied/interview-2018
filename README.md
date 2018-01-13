@@ -19,7 +19,7 @@ You should see:
 
 ### About app
 0) Works with GitHub API
-1) Two pages: main and details
+1) Two pages: main and detail
 2) You may: 
 - see top 5 repositories
 - search for any repository, sorted by stars
