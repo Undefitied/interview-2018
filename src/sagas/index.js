@@ -1,3 +1,4 @@
+import { delay } from 'redux-saga'
 import { takeLatest, put, call, throttle } from 'redux-saga/effects'
 import {
     FETCH_REPS,
@@ -53,7 +54,7 @@ function fetchSearchRepsApi(query) {
 function* fetchSearchReps(action) {
     try {
         const { query } = action
-        
+
         if (!query) {
             return yield put(emptySearch())
         }
@@ -77,9 +78,8 @@ function fetchSignleRepApi(fullName) {
 }
 
 function* fetchSignleRep(action) {
-    const { fullName } = action
-
     try {
+        const { fullName } = action
         yield put(requestSingleRep())
         const json = yield call(fetchSignleRepApi, fullName)
         yield put(recieveSingleRep(json.splice(0, 10)))
@@ -92,8 +92,13 @@ function* fetchSignleRep(action) {
 
 function* mySaga() {
     yield takeLatest(FETCH_REPS, fetchReps)
-    yield throttle(500, CHANGE_SEARCH_INPUT, fetchSearchReps)
+    yield takeLatest(CHANGE_SEARCH_INPUT, handleSearchInput);
     yield takeLatest(FETCH_SINGLE_REP, fetchSignleRep)
+}
+
+function* handleSearchInput(action) {
+    yield call(delay, 500)
+    yield call(fetchSearchReps, action)
 }
 
 export default mySaga
