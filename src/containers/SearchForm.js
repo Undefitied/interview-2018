@@ -5,7 +5,6 @@ import { changeSearchInput } from '../actions/index'
 import { withRouter } from 'react-router-dom'
 
 class SearchForm extends React.Component {
-
     componentDidMount() {
         const { history } = this.props
 
@@ -14,7 +13,7 @@ class SearchForm extends React.Component {
 
             result[item[0]] = item[1]
 
-            return result;
+            return result
         }, {})
 
         if (locationSearch.q) {
@@ -36,20 +35,22 @@ class SearchForm extends React.Component {
         const { searchInputValue } = this.props
 
         return (
-            <div className="reps-search">
-                <input type="text" className="reps-search-input"
-                       onChange={this.inputChange}
-                       value={searchInputValue}
-                       placeholder="Search..."
+          <div className='reps-search'>
+            <input type='text' className='reps-search-input'
+              onChange={this.inputChange}
+              value={searchInputValue}
+              placeholder='Search...'
                 />
-            </div>
+          </div>
         )
     }
 }
 
 SearchForm.propTypes = {
-    searchInputValue: PropTypes.string
-};
+    searchInputValue: PropTypes.string,
+    history: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired
+}
 
 function mapStateToProps(state) {
     const { search } = state

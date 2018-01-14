@@ -20,27 +20,27 @@ function repList(state = {
     items: [],
 }, action) {
     switch (action.type) {
-        case REQUEST_REPS:
-            return {
-                ...state,
-                loading: true,
-            }
+    case REQUEST_REPS:
+        return {
+            ...state,
+            loading: true,
+        }
 
-        case RECEIVE_REPS:
-            return {
-                ...state,
-                loading: false,
-                items: action.reps,
-            }
+    case RECEIVE_REPS:
+        return {
+            ...state,
+            loading: false,
+            items: action.reps,
+        }
 
-        case RECEIVE_REPS_ERROR:
-            return {
-                ...state,
-                loading: false,
-            }
+    case RECEIVE_REPS_ERROR:
+        return {
+            ...state,
+            loading: false,
+        }
 
-        default:
-            return state;
+    default:
+        return state
     }
 }
 
@@ -49,27 +49,27 @@ function singleRep(state = {
     pullRequests: []
 }, action) {
     switch (action.type) {
-        case REQUEST_SINGLE_REP:
-            return {
-                ...state,
-                loading: true,
-            }
+    case REQUEST_SINGLE_REP:
+        return {
+            ...state,
+            loading: true,
+        }
 
-        case RECIEVE_SINGLE_REP:
-            return {
-                ...state,
-                loading: false,
-                pullRequests: action.pullRequests
-            }
+    case RECIEVE_SINGLE_REP:
+        return {
+            ...state,
+            loading: false,
+            pullRequests: action.pullRequests
+        }
 
-        case RECIEVE_SINGLE_REP_ERROR:
-            return {
-                ...state,
-                loading: false,
-            }
+    case RECIEVE_SINGLE_REP_ERROR:
+        return {
+            ...state,
+            loading: false,
+        }
 
-        default:
-            return state
+    default:
+        return state
     }
 }
 
@@ -79,42 +79,41 @@ function search(state = {
     items: []
 }, action) {
     switch (action.type) {
+    case CHANGE_SEARCH_INPUT:
+        return {
+            ...state,
+            query: action.query
+        }
 
-        case CHANGE_SEARCH_INPUT:
-            return {
-                ...state,
-                query: action.query
-            }
+    case REQUEST_SEARCH_REPS:
+        return {
+            ...state,
+            loading: true,
+            query: action.query
+        }
 
-        case REQUEST_SEARCH_REPS:
-            return {
-                ...state,
-                loading: true,
-                query: action.query
-            }
+    case RECIEVE_SEARCH_REPS:
+        return {
+            ...state,
+            loading: false,
+            items: action.reps,
+        }
 
-        case RECIEVE_SEARCH_REPS:
-            return {
-                ...state,
-                loading: false,
-                items: action.reps,
-            }
+    case RECIEVE_SEARCH_REPS_ERROR:
+        return {
+            ...state,
+            loading: false,
+        }
 
-        case RECIEVE_SEARCH_REPS_ERROR:
-            return {
-                ...state,
-                loading: false,
-            }
+    case EMPTY_SEARCH:
+        return {
+            ...state,
+            loading: false,
+            query: action.query
+        }
 
-        case EMPTY_SEARCH:
-            return {
-                ...state,
-                loading: false,
-                query: action.query
-            }
-
-        default:
-            return state
+    default:
+        return state
     }
 }
 

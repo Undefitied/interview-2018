@@ -1,12 +1,11 @@
-const path = require('path');
-const webpack = require('webpack');
-const { getIfUtils, removeEmpty } = require('webpack-config-utils');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const { getIfUtils, removeEmpty } = require('webpack-config-utils')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const nodeEnv = process.env.NODE_ENV || 'development';
-const { ifDevelopment, ifProduction } = getIfUtils(nodeEnv);
+const nodeEnv = process.env.NODE_ENV || 'development'
+const { ifDevelopment, ifProduction } = getIfUtils(nodeEnv)
 
 module.exports = removeEmpty({
     entry: './src/index.js',
@@ -69,4 +68,4 @@ module.exports = removeEmpty({
             new ExtractTextPlugin('[name]-bundle.css')
         ),
     ]),
-});
+})

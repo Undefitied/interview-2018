@@ -4,21 +4,21 @@ import PullList from './PullList'
 import BackButton from './BackButton'
 
 const SingleRep = ({ fullName, pullRequests }) => (
-    <div>
-        <BackButton>
+  <div>
+    <BackButton>
             Back
-        </BackButton>
+    </BackButton>
 
-        <div className="single-rep">
-            <h1>{fullName}</h1>
+    <div className='single-rep'>
+      <h1>{fullName}</h1>
 
-            <div className="pulls">
-                <h2>{pullRequests.length} Last Pull Requests</h2>
-                <PullList pulls={pullRequests}/>
-            </div>
-        </div>
-
+      <div className='pulls'>
+        <h2>{pullRequests.length} Last Pull Requests</h2>
+        <PullList pulls={pullRequests} />
+      </div>
     </div>
+
+  </div>
 )
 
 SingleRep.propTypes = {
