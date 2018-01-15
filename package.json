@@ -1,7 +1,6 @@
 {
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "karma start tests/karma.config",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix"
   },
