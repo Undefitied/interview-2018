@@ -17,10 +17,10 @@ class BackButton extends React.Component {
 }
 
 BackButton.propTypes = {
-    history: {
+    history: PropTypes.shape({
         goBack: PropTypes.func.isRequired
-    },
-    children: PropTypes.object.isRequired
+    }),
+    children: PropTypes.any
 }
 
 export default withRouter(BackButton)

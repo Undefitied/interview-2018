@@ -31,7 +31,7 @@ function fetchRepsApi() {
         })
 }
 
-function * fetchReps() {
+export function * fetchReps() {
     try {
         yield put(requestReps())
         const json = yield call(fetchRepsApi)
