@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Reps from '../components/Reps'
 
-class SearchReps extends React.Component {
+export class SearchReps extends React.Component {
     render() {
         const { loading, items, query } = this.props
 
@@ -17,7 +17,7 @@ class SearchReps extends React.Component {
                 { !loading && items.length < 1 && <h2>Nothing Found</h2> }
                 { !loading && items.length > 0 &&
                 <Reps items={items} />
-                    }
+                }
             </div> }
           </div>
         )

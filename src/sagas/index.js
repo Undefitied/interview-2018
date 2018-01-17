@@ -1,29 +1,31 @@
 import { delay } from 'redux-saga'
+import fetch from 'isomorphic-fetch'
 import { takeLatest, put, call } from 'redux-saga/effects'
 import {
+    FETCH_REPS_URI,
+    FETCH_SEARCH_REPS_URI,
+    FETCH_SINGLE_REP_URI,
+
     FETCH_REPS,
     FETCH_SINGLE_REP,
     CHANGE_SEARCH_INPUT,
-
+} from '../constants'
+import {
     requestReps,
     receiveReps,
     receiveRepsError,
 
     emptySearch,
     requestSearchReps,
-    recieveSearchReps,
-    recieveSearchRepsError,
+    receiveSearchReps,
+    receiveSearchRepsError,
 
     requestSingleRep,
-    recieveSingleRep,
-    recieveSingleRepError,
+    receiveSingleRep,
+    receiveSingleRepError,
 } from '../actions'
 
-const FETCH_REPS_URI = 'https://api.github.com/search/repositories?q=stars:>1&s=stars'
-const FETCH_SEARCH_REPS_URI = (query) => `https://api.github.com/search/repositories?s=stars&q=${query}`
-const FETCH_SINGLE_REP_URI = (fullName) => `https://api.github.com/repos/${fullName}/pulls`
-
-function fetchRepsApi() {
+export function fetchRepsApi() {
     return fetch(FETCH_REPS_URI)
         .then(response => response.json())
         .catch(err => {
@@ -31,7 +33,7 @@ function fetchRepsApi() {
         })
 }
 
-export function * fetchReps() {
+export function* fetchReps() {
     try {
         yield put(requestReps())
         const json = yield call(fetchRepsApi)
@@ -49,7 +51,7 @@ function fetchSearchRepsApi(query) {
         })
 }
 
-function * fetchSearchReps(action) {
+function* fetchSearchReps(action) {
     try {
         const { query } = action
 
@@ -57,11 +59,11 @@ function * fetchSearchReps(action) {
             return yield put(emptySearch())
         }
 
-        yield put(requestSearchReps(query))
+        yield put(requestSearchReps())
         const json = yield call(fetchSearchRepsApi, query)
-        yield put(recieveSearchReps(json.items || []))
+        yield put(receiveSearchReps(json.items || []))
     } catch (e) {
-        yield put(recieveSearchRepsError(e))
+        yield put(receiveSearchRepsError(e))
     }
 }
 
@@ -73,26 +75,26 @@ function fetchSignleRepApi(fullName) {
         })
 }
 
-function * fetchSignleRep(action) {
+function* fetchSignleRep(action) {
     try {
         const { fullName } = action
         yield put(requestSingleRep())
         const json = yield call(fetchSignleRepApi, fullName)
-        yield put(recieveSingleRep(json.splice(0, 10)))
+        yield put(receiveSingleRep(json.splice(0, 10)))
     } catch (e) {
-        yield put(recieveSingleRepError(e))
+        yield put(receiveSingleRepError(e))
     }
 }
 
-function * mySaga() {
+function* handleSearchInput(action) {
+    yield call(delay, 500)
+    yield call(fetchSearchReps, action)
+}
+
+function* mySaga() {
     yield takeLatest(FETCH_REPS, fetchReps)
     yield takeLatest(CHANGE_SEARCH_INPUT, handleSearchInput)
     yield takeLatest(FETCH_SINGLE_REP, fetchSignleRep)
-}
-
-function * handleSearchInput(action) {
-    yield call(delay, 500)
-    yield call(fetchSearchReps, action)
 }
 
 export default mySaga

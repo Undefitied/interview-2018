@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchReps } from '../actions'
 import Reps from '../components/Reps'
 
-class TopReps extends React.Component {
+export class TopReps extends React.Component {
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(fetchReps())
@@ -22,7 +22,7 @@ class TopReps extends React.Component {
             { !loading && items.length < 1 && <h2>Error</h2> }
             { !loading && items.length > 0 &&
             <Reps items={items} />
-                }
+            }
           </div>
         )
     }

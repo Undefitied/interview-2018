@@ -4,9 +4,9 @@ import PullList from './PullList'
 import BackButton from './BackButton'
 
 const SingleRep = ({ fullName, pullRequests }) => (
-  <div>
+  <div className='single-rep-wr'>
     <BackButton>
-            Back
+        Back
     </BackButton>
 
     <div className='single-rep'>

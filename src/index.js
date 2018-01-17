@@ -3,24 +3,11 @@ import './styles/main.scss'
 
 import React from 'react'
 import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import configureStore from './configureStore'
-import App from './components/App'
-import RepRoute from './routes/RepRoute'
-
-const store = configureStore
+import App from './App'
 
 render(
   <div>
-    <Provider store={store}>
-      <Router>
-        <div>
-          <Route exact path='/' component={App} />
-          <Route path='/rep/:slug' component={RepRoute} />
-        </div>
-      </Router>
-    </Provider>
+    <App />
   </div>,
     document.getElementById('root')
 )

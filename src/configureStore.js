@@ -7,7 +7,7 @@ import mySaga from './sagas'
 const sagaMiddleware = createSagaMiddleware()
 const loggerMiddleware = createLogger()
 
-export default (function configureStore(initialState) {
+export function configureStore(initialState) {
     return createStore(
         rootReducer,
         initialState,
@@ -16,6 +16,8 @@ export default (function configureStore(initialState) {
             sagaMiddleware
         )
     )
-})()
+}
+
+export default (configureStore)()
 
 sagaMiddleware.run(mySaga)

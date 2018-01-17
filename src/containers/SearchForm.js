@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { changeSearchInput } from '../actions/index'
 import { withRouter } from 'react-router-dom'
 
-class SearchForm extends React.Component {
+export class SearchForm extends React.Component {
     componentDidMount() {
         const { history } = this.props
 
@@ -40,7 +40,7 @@ class SearchForm extends React.Component {
               onChange={this.inputChange}
               value={searchInputValue}
               placeholder='Search...'
-                />
+            />
           </div>
         )
     }
