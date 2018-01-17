@@ -1,5 +1,5 @@
 # interview-2018
-Test task to demonstrate react + redux + redux-saga skills
+Test task with react + redux + redux-saga
 
 ### What is in
 - react
@@ -7,6 +7,7 @@ Test task to demonstrate react + redux + redux-saga skills
 - redux
 - redux-saga
 - basic webpack settings
+- unit tests (jest + enzyme)
 
 ### To install
 `npm install` or `yarn`
@@ -24,3 +25,6 @@ You should see:
 - see top 5 repositories
 - search for any repository, sorted by stars
 - view single repository and it's last 10 pull requests
+
+### In progress
+- tests for sagas
